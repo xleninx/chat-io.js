@@ -3,8 +3,10 @@
 const http = require('http')
 const port = process.env.PORT || 8080
 
-const server = http.createServer()
+const server = http.createServer(function(req, res){
+  res.end('Hello io.js')
+})
 
-server.listen(port)
-
-console.log(`Server runing in port ${port}`)
+server.listen(port, function(){
+  console.log(`Server running in port ${port}`)
+})
