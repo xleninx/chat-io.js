@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/xleninx/chat-io.js/issues"
   },
-  "homepage": "https://github.com/xleninx/chat-io.js#readme"
+  "homepage": "https://github.com/xleninx/chat-io.js#readme",
+  "dependencies": {
+    "st": "^0.5.5"
+  }
 }
