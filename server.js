@@ -4,6 +4,7 @@
 const http = require('http')
 const port = process.env.PORT || 3000
 const fs = require('fs')
+const path = require('path')
 const server = http.createServer(onRequest)
 
 // EventEmitter
@@ -15,8 +16,14 @@ server.listen(port)
 
 // Functions
 function onRequest(req, res){
-  let file = fs.readFileSync('public/index.html')
-  res.end(file)
+  let fileName = path.join(__dirname, 'public', 'index.html')
+  fs.readFile(fileName, function(err, file){
+    if (err){
+      return res.end(err.message)
+    }
+    res.setHeader('Content-Type', 'text/html')
+    res.end(file)
+  })
 }
 
 function onListening(){
