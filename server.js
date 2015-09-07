@@ -1,8 +1,9 @@
-'use stric' // this is for make code clean with ES6
+'use strict' // this is for make code clean with ES6
 
 // Constants
 const http = require('http')
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
+const fs = require('fs')
 const server = http.createServer(onRequest)
 
 // EventEmitter
@@ -14,7 +15,8 @@ server.listen(port)
 
 // Functions
 function onRequest(req, res){
-  res.end('Hello io.js')
+  let file = fs.readFileSync('public/index.html')
+  res.end(file)
 }
 
 function onListening(){
