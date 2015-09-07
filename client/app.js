@@ -1,6 +1,6 @@
 'use strict'
 const Webrtc2Images = require('webrtc2images')
-
+const xhr = require('xhr')
 const rtc = new Webrtc2Images({
   width: 200,
   height: 200,
@@ -20,7 +20,17 @@ record.addEventListener('click', function(e){
 
   rtc.recordVideo(function(err, frames){
     if (err) return logError(err)
-    console.log(frames)
+
+    xhr({
+      uri: '/process',
+      method: 'post',
+      headers: { 'Content-type':'application/json' },
+      body: JSON.stringify({ images: frames })
+    }, function(err, res, body){
+      if (err) return logError(err)
+
+      console.log(JSON.parse(body))
+    })
   })
 }, false)
 

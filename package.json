@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/xleninx/chat-io.js#readme",
   "dependencies": {
+    "body": "^5.1.0",
     "course": "0.0.1",
     "st": "^0.5.5",
-    "webrtc2images": "^1.4.4"
+    "webrtc2images": "^1.4.4",
+    "xhr": "^2.0.4"
   },
   "devDependencies": {
     "browserify": "^11.0.1"
