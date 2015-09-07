@@ -4,9 +4,9 @@
   "description": "Sample chat with io.js and socket.io",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "jshint .",
-    "validate": "npm ls"
+    "postinstall": "npm run build-js",
+    "build-js": "browserify client/app.js -o public/app.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/xleninx/chat-io.js#readme",
   "dependencies": {
+    "course": "0.0.1",
     "st": "^0.5.5",
     "webrtc2images": "^1.4.4"
   },
