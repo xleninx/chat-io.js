@@ -12,8 +12,10 @@ const mount = st({
 function onRequest(req, res){
   mount(req, res, function(err){
     if (err) return fail(err, res)
+
     router(req, res, function(err){
       if (err) return fail(err, res)
+
       res.statusCode = 404
       res.end(`Not found ${req.url}`)
     })
