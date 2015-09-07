@@ -24,10 +24,8 @@ router.post('/process', function(req, res){
       })
     }else{
       res.statusCode = 500
-      res.end(JSON.stringify({ error: 'parameter `images` is required'
+      res.end(JSON.stringify({ error: 'parameter `images` is required' }))
     }
-
-
   })
 })
 

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/xleninx/chat-io.js#readme",
   "dependencies": {
+    "async": "^1.4.2",
     "body": "^5.1.0",
     "course": "0.0.1",
     "st": "^0.5.5",
