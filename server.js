@@ -5,7 +5,7 @@ const http = require('http')
 const port = process.env.PORT || 3000
 const fs = require('fs')
 const path = require('path')
-const server = http.createServer(onRequest)
+const server = http.createServer()
 
 // EventEmitter
 server.on('request', onRequest)
@@ -23,6 +23,7 @@ function onRequest(req, res){
   rs.pipe(res)
 
   res.on('error', function(err){
+    res.setHeader('Content-Type', 'text/pain')
     res.end(err.message)
   })
 }
