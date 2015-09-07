@@ -1,8 +1,10 @@
+'use strict'
 const path = require('path')
 const course = require('course')
 const st = require('st')
 const router = course()
 const jsonBody = require('body/json')
+const helper = require('../helper')
 
 const mount = st({
   path: path.join(__dirname, '..', 'public'),
@@ -14,10 +16,13 @@ router.post('/process', function(req, res){
   jsonBody(req, res, { limit: 3 * 1024 * 1024 }, function(err, body){
     if (err) return fail(err, res)
 
-    console.log(body)
+    let converter = helper.convertVideo(body.images)
 
-    res.setHeader('Content-type', 'application/json')
-    res.end(JSON.stringify({ ok: true }))
+    converter.on('video', function(video){
+      res.setHeader('Content-type', 'application/json')
+      res.end(JSON.stringify({ video: video }))
+    })
+
   })
 })
 
