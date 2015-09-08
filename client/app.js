@@ -1,6 +1,8 @@
 'use strict'
 const Webrtc2Images = require('webrtc2images')
+const messageTpl = require('./templates/message.hbs')
 const xhr = require('xhr')
+const domify = require('domify')
 const rtc = new Webrtc2Images({
   width: 200,
   height: 200,
@@ -14,9 +16,19 @@ rtc.startVideo(function(err){
   if (err) return logError(err)
 })
 
-const record = document.querySelector('#record')
-record.addEventListener('click', function(e){
+const messages = document.querySelector('#messages')
+const form = document.querySelector('form')
+
+form.addEventListener('submit', function(e){
   e.preventDefault()
+
+  record()
+}, false)
+
+function record(){
+  const input = document.querySelector('input[name="message"]')
+  const message = input.value
+  input.value = ''
 
   rtc.recordVideo(function(err, frames){
     if (err) return logError(err)
@@ -32,14 +44,17 @@ record.addEventListener('click', function(e){
       body = JSON.parse(body)
 
       if(body.video){
-        const video = document.querySelector('#video')
-        video.src = body.video
-        video.loop = true
-        video.play()
+        addMessage({ message: message, video: body.video})
       }
     })
   })
-}, false)
+}
+
+function addMessage(message){
+  const m = messageTpl(message)
+  messages.appendChild(domify(m))
+  window.scrollTo(0, document.body.scrollHeight)
+}
 
 function logError(err){
   console.log(err)
