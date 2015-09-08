@@ -3,11 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>:: Chat OI ::</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-    <div id="video-preview"></div>
-    <video id="video" width="200" height="200"></video>
-    <button id='record'>Record</button>
-    <script src='/app.js' type="text/javascript"></script>
+    <section>
+      <section>
+      <ul id="messages"></ul>
+    </section>
+    <footer>
+      <div id="video-preview"></div>
+      <form>
+        <input type="text" name="message">
+      </form>
+    </footer>
+    <script src="/app.js"></script>
   </body>
 </html>
