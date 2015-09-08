@@ -2,10 +2,12 @@
 const uuid = require('uuid')
 const level = require('level')
 const ttl = require('level-ttl')
+const concat = require('concat-stream')
 
 module.exports = function(options){
   options = options || {}
-  let duration = optiones.duration || 10 * 60 * 1000
+  let duration = options.duration || 10 * 60 * 1000
+  let limit = options.limit || 10
 
   const db = ttl(level('./messages.db'), { checkFrequency: 10000 })
 
@@ -20,7 +22,18 @@ module.exports = function(options){
   }
 
   function list(callback){
-    callback()
+    let rs = db.createValueStream({
+      limit: limit,
+      valueEncoding: 'json',
+      reverse: true,
+      gt: 'message'
+    })
+
+    rs.pipe(concat(function(messages){
+      callback(null, messages.reverse())
+    }))
+
+    rs.on('error', callback)
   }
 
   return {
