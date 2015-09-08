@@ -6,8 +6,9 @@ const port = process.env.PORT || 3000
 const fs = require('fs')
 const router = require('./router')
 const server = http.createServer()
-
+const realtime = require('./realtime')
 // EventEmitter
+realtime(server)
 server.on('request', router)
 server.on('listening', onListening)
 

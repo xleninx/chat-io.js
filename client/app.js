@@ -2,7 +2,11 @@
 const Webrtc2Images = require('webrtc2images')
 const messageTpl = require('./templates/message.hbs')
 const xhr = require('xhr')
+const io = require('socket.io-client')
 const domify = require('domify')
+
+io.connect()
+
 const rtc = new Webrtc2Images({
   width: 200,
   height: 200,
