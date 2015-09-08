@@ -7,6 +7,9 @@
     "build-js": "browserify -t hbsfy client/app.js -o public/app.js",
     "start": "node server.js"
   },
+  "engines": {
+    "iojs": "3.3.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xleninx/chat-io.js.git"
