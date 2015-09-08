@@ -4,7 +4,6 @@
   "description": "Sample chat with io.js and socket.io",
   "main": "server.js",
   "scripts": {
-    "postinstall": "npm run build-js",
     "build-js": "browserify -t hbsfy client/app.js -o public/app.js",
     "start": "node server.js"
   },
