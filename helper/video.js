@@ -15,7 +15,7 @@ module.exports = function (images){
   let events = new EventEmitter()
   let count = 0
   let baseName = uuid.v4()
-  let tmpDir = os.tmpDir()
+  let tmpDir = path.join(__dirname, '..', 'tmp')
   let video
 
   async.series([
